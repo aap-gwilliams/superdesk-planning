@@ -18,7 +18,7 @@ setup(
     author_email='edouard.richard@sourcefabric.org',
     license='MIT',
     install_requires=[
-        'icalendar==3.11.1',
+        'icalendar>=4.0.3,<4.1',
         'deepdiff==3.3.0'
     ],
     url='',
