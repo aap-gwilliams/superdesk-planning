@@ -143,7 +143,9 @@ export class UpdateTimeComponent extends React.Component {
             relatedEvents: relatedEvents,
         });
 
-        if ((eventUtils.eventsDatesSame(diff, this.props.original, TIME_COMPARISON_GRANULARITY.MINUTE) &&
+        let dirty = this.state.dirty;
+
+        if ((!dirty && eventUtils.eventsDatesSame(diff, this.props.original, TIME_COMPARISON_GRANULARITY.MINUTE) &&
                 diff.update_method.value === EventUpdateMethods[0].value) ||
             !isEqual(errorMessages, [])
         ) {
