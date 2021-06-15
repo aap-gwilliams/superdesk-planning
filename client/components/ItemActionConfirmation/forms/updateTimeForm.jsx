@@ -94,6 +94,7 @@ export class UpdateTimeComponent extends React.Component {
         const errors = cloneDeep(this.state.errors);
         let relatedEvents = this.state.relatedEvents;
         let errorMessages = [];
+        let dirty = false;
         const fieldsToValidate = Object.keys(diff);
 
         if (field === '_startTime') {
@@ -136,14 +137,14 @@ export class UpdateTimeComponent extends React.Component {
             fieldsToValidate
         );
 
+        dirty = !isEqual(this.props.original, diff);
+
         this.setState({
             diff: diff,
-            dirty: !isEqual(this.props.original, diff),
+            dirty: dirty,
             errors: errors,
             relatedEvents: relatedEvents,
         });
-
-        let dirty = this.state.dirty;
 
         if ((!dirty && eventUtils.eventsDatesSame(diff, this.props.original, TIME_COMPARISON_GRANULARITY.MINUTE) &&
                 diff.update_method.value === EventUpdateMethods[0].value) ||
